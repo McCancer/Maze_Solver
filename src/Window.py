@@ -60,13 +60,32 @@ class Cell:
             self.__win.draw_line(Line(self.top_left_point, pt_top_right), 'black')
         if(self.has_bottom_wall):
             self.__win.draw_line(Line(self.bottom_right_point, pt_bottom_left), 'black')
+    
+    def getCenterPoint(self):
+        center_x = (self.bottom_right_point.x + self.top_left_point.x)//2
+        center_y = (self.bottom_right_point.y + self.top_left_point.y)//2
+        return Point(center_x, center_y)
+
+    def draw_move(self, to_cell, undo=False):
+        fill_color = "grey"
+        if undo:
+            fill_color = "red"
+        self_center = self.getCenterPoint()
+        to_cell_center = to_cell.getCenterPoint()
+        self.__win.draw_line(Line(self_center, to_cell_center), fill_color)
+        
 
 def main():
     win = Window(800, 600)
     pt1 = Point(100, 200)
     pt2 = Point(200, 500)
+    pt3 = Point(400, 200)
+    pt4 = Point(500, 500)
     cell1 = Cell(pt1, pt2, win)
     cell1.draw()
+    cell2 = Cell(pt3, pt4, win)
+    cell2.draw()
+    cell1.draw_move(cell2, True)
     win.wait_for_close()
 
 if __name__ == "__main__":
