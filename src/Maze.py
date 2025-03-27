@@ -1,6 +1,7 @@
 from Cell import Cell
 from Window import Point
 import time
+import random
 
 class Maze:
 
@@ -36,6 +37,21 @@ class Maze:
             return 
         self.win.redraw()
         time.sleep(0.05)
+    
+    def _break_entrance_and_exit(self):
+        entranceRandom = random.randint(1,2)
+        exitRandom = random.randint(1,2)
+        if(entranceRandom == 1):
+            #left wall gone
+            self._cells[0][0].has_left_wall = False
+        else:
+            self._cells[0][0].has_top_wall = False
+        if(exitRandom == 1):
+            self._cells[self.num_cols-1][self.num_rows-1].has_right_wall = False
+        else:
+            self._cells[self.num_cols-1][self.num_rows-1].has_bottom_wall = False
+        self.__draw_cell(0,0)
+        self.__draw_cell(self.num_cols-1,self.num_rows-1)
 
 def main():
     pass

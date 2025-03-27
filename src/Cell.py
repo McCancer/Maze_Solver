@@ -13,14 +13,22 @@ class Cell:
     def draw(self):
         pt_bottom_left = Point(self.top_left_point.x, self.bottom_right_point.y)
         pt_top_right = Point(self.bottom_right_point.x, self.top_left_point.y)
+        left_wall_color = 'white'
+        right_wall_color = 'white' 
+        top_wall_color = 'white'
+        bottom_wall_color = 'white'
         if(self.has_left_wall):
-            self.__win.draw_line(Line(self.top_left_point, pt_bottom_left), 'black')
+            left_wall_color = 'black'
         if(self.has_right_wall):
-            self.__win.draw_line(Line(self.bottom_right_point, pt_top_right), 'black')
+            right_wall_color = 'black'
         if(self.has_top_wall):
-            self.__win.draw_line(Line(self.top_left_point, pt_top_right), 'black')
+            top_wall_color = 'black'
         if(self.has_bottom_wall):
-            self.__win.draw_line(Line(self.bottom_right_point, pt_bottom_left), 'black')
+            bottom_wall_color = 'black'
+        self.__win.draw_line(Line(self.top_left_point, pt_bottom_left), left_wall_color)
+        self.__win.draw_line(Line(self.bottom_right_point, pt_top_right), right_wall_color)
+        self.__win.draw_line(Line(self.top_left_point, pt_top_right), top_wall_color)
+        self.__win.draw_line(Line(self.bottom_right_point, pt_bottom_left), bottom_wall_color)
     
     def getCenterPoint(self):
         center_x = (self.bottom_right_point.x + self.top_left_point.x)//2

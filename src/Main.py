@@ -5,6 +5,7 @@ from Cell import *
 def main():
      win = Window(800, 600)
      our_maze = Maze(20, 2, 5, 5, 100, 100, win)
+     our_maze._break_entrance_and_exit()
      win.wait_for_close()
 
 
