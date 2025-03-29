@@ -8,6 +8,7 @@ class Cell:
         self.has_bottom_wall = True
         self.top_left_point = pt1
         self.bottom_right_point = pt2
+        self.visited = False
         self.__win = can
 
     def draw(self):
