@@ -16,6 +16,9 @@ class Maze:
         if seed is not None:
             random.seed(seed)
         self.__create_cells()
+        self._break_entrance_and_exit()
+        self._break_walls_r(0,0)
+        self._reset_cell_visited()
 
     def __create_cells(self):
         self._cells = [[None for _ in range(self.num_rows)] for _ in range(self.num_cols)]
@@ -100,6 +103,11 @@ class Maze:
             #move to chosen cell
             self._break_walls_r(direction[0], direction[1])
 
+    def _reset_cell_visited(self):
+        for i in range(len(self._cells)):
+            for j in range(len(self._cells[i])):
+                self._cells[i][j].visited = False
+            
 def main():
     pass
 
